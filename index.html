@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puertas Automáticas Seryver G&G | Seguridad y Elegancia en Piura</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Expertos en puertas automáticas en Piura, Sullana y Talara. Instalación y mantenimiento de sistemas seccionales, levadizos y corredizos. Agrégale elegancia a tu seguridad.">
+    <meta name="keywords" content="puertas automáticas Piura, seguridad moderna, SERYVER G & G, portones eléctricos Sullana, mantenimiento puertas levadizas">
+    <meta name="author" content="Seryver G&G">
+
+    <!-- Tailwind CSS (Framework de diseño) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Library (Animaciones al hacer scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Markdown Parser para respuestas de IA -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Configuración de Colores Personalizados (Tailwind) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0f172a',    /* Azul Profundo (Trust) */
+                            gray: '#64748b',    /* Gris Metálico (Tech) */
+                            light: '#f8fafc',   /* Fondo Claro */
+                            accent: '#ea580c',  /* Naranja Quemado (CTA) */
+                            gold: '#d97706',    /* Dorado Mate (Detalles) */
+                            ai: '#8b5cf6',      /* Violeta para IA */
+                            ai_dark: '#7c3aed'  /* Violeta Oscuro para hover */
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Roboto', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos personalizados adicionales */
+        html { scroll-behavior: smooth; }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.7)), 
+                              url('portada seryver.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Animación suave para detalles de producto */
+        .product-details {
+            transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .product-details.active {
+            max-height: 200px;
+            opacity: 1;
+        }
+
+        /* Chat Styles */
+        .chat-message {
+            @apply p-3 rounded-lg mb-2 max-w-[85%] text-sm shadow-sm;
+        }
+        .chat-user {
+            @apply bg-brand-light text-brand-navy ml-auto border border-slate-200 rounded-br-none;
+        }
+        .chat-ai {
+            @apply bg-gradient-to-r from-brand-navy to-slate-800 text-white mr-auto rounded-bl-none;
+        }
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="font-body text-slate-800 bg-brand-light overflow-x-hidden">
+
+    <!-- ================= NAV BAR ================= -->
+    <nav class="bg-brand-navy text-white fixed w-full z-50 shadow-lg transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo Restaurado (Texto) -->
+            <a href="#" class="font-heading font-extrabold text-2xl tracking-wider flex items-center gap-2">
+                <i class="fas fa-shield-alt text-brand-accent"></i>
+                SERYVER <span class="text-slate-400 font-light">G&G</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-6 text-sm font-medium tracking-wide">
+                <a href="#inicio" class="hover:text-brand-accent transition">INICIO</a>
+                <a href="#educativo" class="hover:text-brand-accent transition">BENEFICIOS</a>
+                <a href="#productos" class="hover:text-brand-accent transition">PRODUCTOS</a>
+                <a href="#proyectos" class="hover:text-brand-accent transition">PROYECTOS</a>
+                
+                <!-- Botón Asistente IA en Menú -->
+                <button onclick="toggleChat()" class="text-brand-ai hover:text-white transition flex items-center gap-1 border border-brand-ai/50 rounded-full px-3 py-1 hover:bg-brand-ai/20">
+                    <i class="fas fa-sparkles"></i> Asesor IA
+                </button>
+            </div>
+
+            <!-- CTA Button (Desktop) -->
+            <div class="hidden md:block">
+                <a href="https://wa.me/51928848576?text=Hola,%20deseo%20cotizar%20una%20puerta%20automática" 
+                   target="_blank"
+                   class="bg-brand-accent hover:bg-orange-700 text-white font-heading font-bold py-2 px-6 rounded-full transition shadow-md flex items-center gap-2">
+                    <i class="fab fa-whatsapp text-lg"></i> Cotiza: 928 848 576
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-navy border-t border-slate-700">
+            <a href="#inicio" class="block py-4 px-6 hover:bg-slate-800 border-b border-slate-700">Inicio</a>
+            <a href="#educativo" class="block py-4 px-6 hover:bg-slate-800 border-b border-slate-700">Beneficios</a>
+            <a href="#productos" class="block py-4 px-6 hover:bg-slate-800 border-b border-slate-700">Productos</a>
+            <button onclick="toggleChat(); document.getElementById('mobile-menu').classList.add('hidden')" class="w-full text-left py-4 px-6 hover:bg-slate-800 border-b border-slate-700 text-brand-ai font-bold">
+                <i class="fas fa-sparkles mr-2"></i> Asesor Virtual IA
+            </button>
+            <a href="#contacto" class="block py-4 px-6 text-brand-accent font-bold">Contactar Ahora</a>
+        </div>
+    </nav>
+
+    <!-- ================= HERO SECTION ================= -->
+    <header id="inicio" class="hero-bg min-h-screen flex items-center relative">
+        <div class="container mx-auto px-6 pt-20 text-center md:text-left">
+            <div class="md:w-2/3 lg:w-1/2">
+                <div class="inline-block bg-brand-accent/90 text-white text-xs font-bold px-3 py-1 rounded mb-4 animate-pulse">
+                    ATENDIENDO A PIURA, SULLANA Y TALARA
+                </div>
+                <h1 class="font-heading text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6" data-aos="fade-up">
+                    Agrégale <span class="text-brand-accent">Elegancia</span> a tu <span class="text-brand-gray">Seguridad</span>
+                </h1>
+                <p class="text-lg text-slate-300 mb-8 font-light" data-aos="fade-up" data-aos-delay="200">
+                    Somos especialistas en automatización de accesos. Transformamos la fachada de tu hogar con tecnología moderna, robusta y confiable.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start" data-aos="fade-up" data-aos-delay="400">
+                    <button onclick="toggleChat()" class="bg-brand-ai hover:bg-brand-ai_dark text-white font-bold py-4 px-8 rounded shadow-lg transition transform hover:-translate-y-1 text-center flex items-center justify-center gap-2">
+                        <i class="fas fa-sparkles"></i> Consultar con IA
+                    </button>
+                    <a href="#contacto" class="border-2 border-white text-white hover:bg-white hover:text-brand-navy font-bold py-4 px-8 rounded transition text-center">
+                        Contáctanos
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </header>
+
+    <!-- ================= DIDACTIC SECTION (El "Por Qué") ================= -->
+    <section id="educativo" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-navy mb-4">¿Por qué automatizar tu hogar?</h2>
+                <p class="text-brand-gray max-w-2xl mx-auto">Más que un lujo, es una inversión inteligente. Descubre cómo la tecnología mejora tu calidad de vida.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Card 1: Seguridad -->
+                <div class="bg-brand-light p-8 rounded-xl shadow-sm hover:shadow-xl transition duration-300 border-t-4 border-brand-navy group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-brand-navy group-hover:bg-brand-navy group-hover:text-white transition">
+                        <i class="fas fa-user-shield text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold mb-3 text-brand-navy">Seguridad Anti-Asalto</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        El momento más vulnerable es bajar del auto para abrir el portón. Con nuestros sistemas, ingresas a tu refugio sin exposiciones innecesarias.
+                    </p>
+                </div>
+
+                <!-- Card 2: Confort -->
+                <div class="bg-brand-light p-8 rounded-xl shadow-sm hover:shadow-xl transition duration-300 border-t-4 border-brand-accent group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition">
+                        <i class="fas fa-magic text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold mb-3 text-brand-navy">Confort Moderno</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Llega a casa y deja que la tecnología te reciba. Olvídate de esfuerzos físicos, lluvia o sol. Un clic y estás dentro.
+                    </p>
+                </div>
+
+                <!-- Card 3: Valor -->
+                <div class="bg-brand-light p-8 rounded-xl shadow-sm hover:shadow-xl transition duration-300 border-t-4 border-brand-navy group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-brand-navy group-hover:bg-brand-navy group-hover:text-white transition">
+                        <i class="fas fa-chart-line text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold mb-3 text-brand-navy">Valoriza tu Propiedad</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Una puerta seccional moderna renueva instantáneamente la fachada, aumentando el valor estético y comercial de tu inmueble.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ABOUT & TEAM ================= -->
+    <section class="py-16 bg-brand-navy text-white relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-blue-800 opacity-20 blur-3xl"></div>
+
+        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2" data-aos="fade-right">
+                <span class="text-brand-accent font-bold tracking-widest text-sm uppercase mb-2 block">Nuestra Esencia</span>
+                <h2 class="font-heading text-3xl font-bold mb-6">"Nos sentimos bendecidos en Piura"</h2>
+                <p class="text-slate-300 mb-6 leading-relaxed">
+                    En <strong>Seryver G&G</strong>, no solo instalamos puertas; construimos confianza. Somos una empresa local comprometida con la seguridad de nuestros vecinos en el norte peruano.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-center"><i class="fas fa-check-circle text-brand-accent mr-3"></i> Honestidad en cada cotización.</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-brand-accent mr-3"></i> Soporte técnico post-venta real.</li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-brand-accent mr-3"></i> Materiales de grado industrial.</li>
+                </ul>
+            </div>
+            <div class="md:w-1/2" data-aos="fade-left">
+                <div class="bg-white/10 p-2 rounded-xl backdrop-blur-sm transform rotate-1 hover:rotate-0 transition duration-500">
+                    <!-- Placeholder for Team Photo -->
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1000&auto=format&fit=crop" 
+                         alt="Equipo técnico Seryver" 
+                         class="rounded-lg shadow-2xl w-full h-72 object-cover grayscale hover:grayscale-0 transition duration-500">
+                    <p class="text-center mt-3 text-sm font-medium">Nuestro equipo técnico listo para servirte</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PRODUCTS CATALOG ================= -->
+    <section id="productos" class="py-20 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-navy">Nuestras Soluciones</h2>
+                <p class="text-brand-gray mt-2">Tecnología de punta adaptada a tus necesidades.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Product 1: Seccionales -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="0">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="Imagen de WhatsApp 2025-10-18 a las 15.54.26_04d5983b.jpg" alt="Puertas Seccionales" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute top-0 right-0 bg-brand-accent text-white text-xs font-bold px-2 py-1 m-2 rounded">TOP VENTAS</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-lg text-brand-navy">Puertas Seccionales</h3>
+                        <p class="text-sm text-slate-500 mb-4 mt-2">Ahorra espacio y moderniza. Se desliza hacia el techo.</p>
+                        <button onclick="toggleDetails('p1')" class="text-brand-accent text-sm font-bold hover:underline focus:outline-none">
+                            <i class="fas fa-plus-circle"></i> Ver detalles técnicos
+                        </button>
+                        <div id="p1" class="product-details bg-slate-50 mt-3 p-3 rounded text-xs text-slate-600 border border-slate-200">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Paneles importados con aislamiento.</li>
+                                <li>Motor silencioso de alta potencia.</li>
+                                <li>Sensores de seguridad anti-aplastamiento.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Corredizas -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 overflow-hidden">
+                        <!-- SE HA CAMBIADO LA IMAGEN POR EL ARCHIVO SUBIDO -->
+                        <img src="puerta-corredera-acceso-finca-480x320.png" alt="Sistemas Corredizos" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-lg text-brand-navy">Sistemas Corredizos</h3>
+                        <p class="text-sm text-slate-500 mb-4 mt-2">Ideal para accesos amplios y portones pesados.</p>
+                        <button onclick="toggleDetails('p2')" class="text-brand-accent text-sm font-bold hover:underline focus:outline-none">
+                            <i class="fas fa-plus-circle"></i> Ver detalles técnicos
+                        </button>
+                        <div id="p2" class="product-details bg-slate-50 mt-3 p-3 rounded text-xs text-slate-600 border border-slate-200">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Motores para alto tráfico.</li>
+                                <li>Cremalleras de acero galvanizado.</li>
+                                <li>Opción de apertura rápida.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Levadizas -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 overflow-hidden">
+                        <!-- SE HA CAMBIADO LA IMAGEN POR EL ARCHIVO SUBIDO -->
+                        <img src="puertas-levadizas-de-metal-peru.webp" alt="Puertas Levadizas" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-lg text-brand-navy">Sistemas Levadizos</h3>
+                        <p class="text-sm text-slate-500 mb-4 mt-2">La solución clásica y robusta para garajes estándar.</p>
+                        <button onclick="toggleDetails('p3')" class="text-brand-accent text-sm font-bold hover:underline focus:outline-none">
+                            <i class="fas fa-plus-circle"></i> Ver detalles técnicos
+                        </button>
+                        <div id="p3" class="product-details bg-slate-50 mt-3 p-3 rounded text-xs text-slate-600 border border-slate-200">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Sistema de resortes calibrados.</li>
+                                <li>Estructura metálica reforzada.</li>
+                                <li>Adaptable a puertas existentes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: Mantenimiento (CON NUEVA FUNCIÓN IA) -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group border-2 border-brand-ai/10" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 overflow-hidden bg-brand-navy flex items-center justify-center relative">
+                        <i class="fas fa-tools text-6xl text-brand-gray group-hover:text-brand-accent transition duration-500"></i>
+                        <div class="absolute top-2 right-2 bg-brand-ai text-white text-xs px-2 py-1 rounded font-bold animate-pulse">
+                            NUEVO: IA
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-lg text-brand-navy">Servicio Técnico</h3>
+                        <p class="text-sm text-slate-500 mb-4 mt-2">Mantenimiento preventivo y diagnóstico de fallas.</p>
+                        
+                        <!-- Botón Diagnóstico IA -->
+                        <button onclick="openDiagnosticModal()" class="w-full bg-brand-ai hover:bg-brand-ai_dark text-white text-sm font-bold py-2 rounded mb-3 flex items-center justify-center gap-2 transition">
+                            <i class="fas fa-stethoscope"></i> Diagnosticar Falla con IA
+                        </button>
+
+                        <button onclick="toggleDetails('p4')" class="text-brand-accent text-sm font-bold hover:underline focus:outline-none">
+                            <i class="fas fa-plus-circle"></i> Ver detalles técnicos
+                        </button>
+                        <div id="p4" class="product-details bg-slate-50 mt-3 p-3 rounded text-xs text-slate-600 border border-slate-200">
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Cambio de resortes y cables.</li>
+                                <li>Configuración de controles.</li>
+                                <li>Reparación de tarjetas electrónicas.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= GALLERY (Masonry Feel) ================= -->
+    <section id="proyectos" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="font-heading text-3xl font-bold text-brand-navy text-center mb-10">Transformando Hogares en el Norte</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-4 h-96 md:h-[500px]">
+                <!-- Item Grande (Ahora usa la foto de Catacaos Piura grande) -->
+                <div class="col-span-2 row-span-2 relative group overflow-hidden rounded-xl cursor-pointer">
+                    <img src="CATACAOS-PIURA (5).jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="text-white font-bold text-lg">Proyecto Residencial</p>
+                        <p class="text-brand-accent text-xs uppercase">Catacaos - Piura</p>
+                    </div>
+                </div>
+                <!-- Item Pequeño 1 (Foto de obra 1) -->
+                <div class="col-span-1 row-span-1 relative group overflow-hidden rounded-xl">
+                    <img src="Imagen de WhatsApp 2025-10-18 a las 15.54.28_c9a95b13.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">Instalación</span>
+                    </div>
+                </div>
+                <!-- Item Pequeño 2 (Foto de obra 2) -->
+                <div class="col-span-1 row-span-1 relative group overflow-hidden rounded-xl">
+                    <img src="Imagen de WhatsApp 2025-10-18 a las 15.54.27_1dec9100.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">Acabados</span>
+                    </div>
+                </div>
+                <!-- Item Mediano (Render/Foto apaisada) -->
+                <div class="col-span-2 row-span-1 relative group overflow-hidden rounded-xl">
+                    <img src="CATACAOS-PIURA.png" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent">
+                        <p class="text-white font-bold text-sm">Diseño y Estructura</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <!-- SE HA ACTUALIZADO EL ENLACE AL PORTAFOLIO EN GOOGLE DRIVE -->
+                <a href="https://drive.google.com/file/d/1GVPL072DvhwBmnlxmRIP37B5Qcd2Dsjw/view?usp=sharing" target="_blank" class="inline-flex items-center text-brand-navy font-bold border-b-2 border-brand-accent hover:text-brand-accent transition pb-1">
+                    Ver más proyectos en nuestro portafolio <i class="fas fa-file-pdf ml-2 text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= TESTIMONIALS (Calidad sobre Cantidad) ================= -->
+    <section class="py-16 bg-brand-light">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <h2 class="font-heading text-2xl font-bold text-brand-navy mb-10">La satisfacción de nuestros clientes nos respalda</h2>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-xl border-l-8 border-brand-accent relative" data-aos="zoom-in">
+                <i class="fas fa-quote-left text-4xl text-slate-200 absolute top-4 left-4"></i>
+                <div class="flex flex-col items-center">
+                    <div class="flex text-yellow-400 mb-4 gap-1">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 text-lg italic mb-6 relative z-10">
+                        "El equipo de Seryver transformó completamente la fachada de mi casa. La puerta es silenciosa, segura y elegante. 100% recomendados para la gente de Piura."
+                    </p>
+                    <div>
+                        <h4 class="font-bold text-brand-navy">Cliente Verificado</h4>
+                        <span class="text-sm text-brand-gray">Residente en Urb. Miraflores</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= MAP & FORM ================= -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-12">
+                
+                <!-- Contact Info & Map -->
+                <div class="lg:w-1/2">
+                    <h2 class="font-heading text-3xl font-bold text-brand-navy mb-4">Llegamos donde nos necesites</h2>
+                    <p class="text-slate-600 mb-8">Nuestra base operativa está en Piura, pero cubrimos todo el eje norte.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center p-3 bg-brand-light rounded border border-slate-100">
+                            <i class="fas fa-map-marker-alt text-brand-accent mr-3"></i> <span class="font-bold text-brand-navy">Piura</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-brand-light rounded border border-slate-100">
+                            <i class="fas fa-map-marker-alt text-brand-accent mr-3"></i> <span class="font-bold text-brand-navy">Sullana</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-brand-light rounded border border-slate-100">
+                            <i class="fas fa-map-marker-alt text-brand-accent mr-3"></i> <span class="font-bold text-brand-navy">Paita</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-brand-light rounded border border-slate-100">
+                            <i class="fas fa-map-marker-alt text-brand-accent mr-3"></i> <span class="font-bold text-brand-navy">Talara</span>
+                        </div>
+                    </div>
+
+                    <!-- Embed Google Map -->
+                    <div class="h-64 bg-slate-200 rounded-xl overflow-hidden shadow-inner">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127271.6963283856!2d-80.6669931!3d-5.1963955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a107c7908352d%3A0xb35556209b5523a!2sPiura!5e0!3m2!1ses!2spe!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Contact Form (Visual) -->
+                <div class="lg:w-1/2" id="contacto">
+                    <div class="bg-brand-light p-8 rounded-2xl shadow-lg">
+                        <h3 class="font-heading text-2xl font-bold text-brand-navy mb-6">Solicita tu Cotización</h3>
+                        <!-- Se agregó ID al formulario y se cambió el evento onsubmit -->
+                        <form id="cotizacionForm" onsubmit="enviarAlWhatsApp(event)">
+                            <div class="mb-4">
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Nombre Completo</label>
+                                <!-- Se agregó ID para capturar el valor -->
+                                <input type="text" id="form-nombre" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent outline-none transition" placeholder="Tu nombre">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Teléfono / WhatsApp</label>
+                                <!-- Se agregó ID para capturar el valor -->
+                                <input type="tel" id="form-telefono" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent outline-none transition" placeholder="999 999 999">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Ciudad</label>
+                                <!-- Se agregó ID para capturar el valor -->
+                                <select id="form-ciudad" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-brand-accent outline-none bg-white">
+                                    <option value="Piura">Piura</option>
+                                    <option value="Sullana">Sullana</option>
+                                    <option value="Paita">Paita</option>
+                                    <option value="Talara">Talara</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Mensaje</label>
+                                <!-- Se agregó ID para capturar el valor -->
+                                <textarea id="form-mensaje" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-brand-accent outline-none transition" rows="3" placeholder="Estoy interesado en..."></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-brand-navy hover:bg-slate-800 text-white font-bold py-3 rounded-lg transition transform hover:scale-[1.02]">
+                                <i class="fab fa-whatsapp mr-2"></i> Enviar a WhatsApp
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-brand-navy text-white pt-16 pb-8 border-t border-slate-800">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <!-- Branding -->
+                <div>
+                    <h3 class="font-heading text-2xl font-bold mb-4 flex items-center gap-2">
+                        <i class="fas fa-shield-alt text-brand-accent"></i> SERYVER G&G
+                    </h3>
+                    <p class="text-slate-400 text-sm mb-6">
+                        Comprometidos con la seguridad y modernización de los hogares en el norte del Perú. Tecnología e innovación a tu alcance.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/people/Puertas-Autom%C3%A1ticas-Seryver-GG/100063687285188/" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-600 transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-600 transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-slate-200">Navegación</h4>
+                    <ul class="space-y-2 text-slate-400 text-sm">
+                        <li><a href="#inicio" class="hover:text-brand-accent transition">Inicio</a></li>
+                        <li><a href="#productos" class="hover:text-brand-accent transition">Puertas Seccionales</a></li>
+                        <li><a href="#proyectos" class="hover:text-brand-accent transition">Proyectos Recientes</a></li>
+                        <!-- TAMBIÉN ACTUALICÉ ESTE ENLACE EN EL FOOTER PARA QUE COINCIDA -->
+                        <li><a href="https://drive.google.com/file/d/1GVPL072DvhwBmnlxmRIP37B5Qcd2Dsjw/view?usp=sharing" target="_blank" class="hover:text-brand-accent transition">Ver Portafolio Completo</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-slate-200">Contáctanos</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start group">
+                            <i class="fas fa-phone mt-1 text-brand-accent mr-3 group-hover:scale-110 transition"></i>
+                            <span class="text-slate-300">928 848 576</span>
+                        </li>
+                        <li class="flex items-start group">
+                            <i class="fab fa-whatsapp mt-1 text-brand-accent mr-3 group-hover:scale-110 transition"></i>
+                            <a href="https://wa.me/51928848576" class="text-slate-300 hover:text-white transition">Chat directo</a>
+                        </li>
+                        <li class="flex items-start group">
+                            <i class="fas fa-map-marker-alt mt-1 text-brand-accent mr-3 group-hover:scale-110 transition"></i>
+                            <span class="text-slate-300">Piura, Perú</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-8 text-center text-xs text-slate-500">
+                &copy; 2025 Puertas Automáticas Seryver G&G. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons Container -->
+    <div class="fixed bottom-6 right-6 flex flex-col items-end space-y-4 z-50">
+        
+        <!-- Gemini Chat Toggle Button -->
+        <button onclick="toggleChat()" class="bg-brand-ai hover:bg-brand-ai_dark text-white p-3 rounded-full shadow-2xl transition transform hover:scale-110 group relative">
+            <i class="fas fa-sparkles text-2xl animate-pulse"></i>
+            <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
+                Asesor IA Seryver
+            </span>
+        </button>
+
+        <!-- WhatsApp Button -->
+        <a href="https://wa.me/51928848576?text=Hola,%20quisiera%20más%20información" 
+           class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition transform hover:scale-110"
+           aria-label="Chat en WhatsApp">
+            <i class="fab fa-whatsapp text-3xl"></i>
+        </a>
+    </div>
+
+    <!-- ================= DIAGNOSTIC AI MODAL ================= -->
+    <div id="diagnostic-modal" class="fixed inset-0 bg-black/50 z-[60] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
+        <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden animate-fade-in-up">
+            <!-- Header -->
+            <div class="bg-brand-navy p-6 text-white flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="bg-white/20 p-2 rounded-full">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">Diagnóstico Técnico IA</h3>
+                        <p class="text-xs text-slate-300">Impulsado por Gemini 🛠️</p>
+                    </div>
+                </div>
+                <button onclick="closeDiagnosticModal()" class="text-white/70 hover:text-white text-2xl">&times;</button>
+            </div>
+            
+            <!-- Body -->
+            <div class="p-6">
+                <p class="text-sm text-gray-600 mb-4">Describe qué problema tiene tu puerta (ej. "hace un chirrido al cerrar", "no responde al control", "se atascó a la mitad").</p>
+                
+                <textarea id="issue-input" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-brand-ai outline-none mb-4" rows="3" placeholder="Describe la falla aquí..."></textarea>
+                
+                <button onclick="diagnoseIssue()" id="btn-diagnose" class="w-full bg-brand-ai hover:bg-brand-ai_dark text-white font-bold py-3 rounded-lg transition flex justify-center items-center gap-2">
+                    <span id="btn-text">Analizar Problema</span>
+                    <i class="fas fa-magic"></i>
+                </button>
+
+                <!-- Result Area -->
+                <div id="diagnostic-result" class="hidden mt-6 bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h4 class="font-bold text-brand-navy mb-2 flex items-center gap-2">
+                        <i class="fas fa-clipboard-check text-green-500"></i> Pre-Diagnóstico:
+                    </h4>
+                    <div id="result-content" class="text-sm text-gray-700 leading-relaxed mb-4"></div>
+                    
+                    <a id="whatsapp-diagnostic-btn" href="#" target="_blank" class="block w-full text-center bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded transition">
+                        <i class="fab fa-whatsapp"></i> Agendar Revisión Técnica
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= GEMINI AI CHAT WIDGET ================= -->
+    <div id="ai-chat-widget" class="fixed bottom-24 right-6 w-96 max-w-[90vw] bg-white rounded-2xl shadow-2xl z-50 transform transition-transform duration-300 scale-0 origin-bottom-right border border-slate-100 flex flex-col h-[500px]">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-brand-navy to-brand-ai p-4 rounded-t-2xl flex justify-between items-center text-white">
+            <div class="flex items-center gap-3">
+                <div class="bg-white/20 p-2 rounded-full">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sm">SeryverBot ✨</h3>
+                    <p class="text-xs text-slate-200">Asesor Virtual Inteligente</p>
+                </div>
+            </div>
+            <button onclick="toggleChat()" class="text-white/80 hover:text-white transition">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <!-- Chat Body -->
+        <div id="chat-messages" class="flex-1 overflow-y-auto p-4 bg-slate-50">
+            <!-- Mensaje de bienvenida -->
+            <div class="flex flex-col space-y-2">
+                <div class="chat-message chat-ai">
+                    <p>¡Hola! 👋 Soy el asistente virtual de <strong>Seryver G&G</strong>.</p>
+                </div>
+                <div class="chat-message chat-ai">
+                    <p>Estoy aquí para ayudarte a elegir la mejor puerta automática para tu hogar en Piura, o resolver dudas de mantenimiento. ¿En qué puedo ayudarte hoy? ✨</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Indicator (Hidden by default) -->
+        <div id="chat-loading" class="hidden px-4 py-2 bg-slate-50">
+            <div class="flex space-x-1 items-center bg-gray-200 w-fit px-3 py-2 rounded-xl rounded-bl-none">
+                <div class="w-2 h-2 bg-gray-500 rounded-full typing-dot"></div>
+                <div class="w-2 h-2 bg-gray-500 rounded-full typing-dot"></div>
+                <div class="w-2 h-2 bg-gray-500 rounded-full typing-dot"></div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="p-4 bg-white border-t border-slate-100 rounded-b-2xl">
+            <form id="chat-form" class="flex gap-2" onsubmit="handleChatSubmit(event)">
+                <input type="text" id="user-input" class="flex-1 border border-slate-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-brand-ai focus:ring-1 focus:ring-brand-ai" placeholder="Escribe tu consulta...">
+                <button type="submit" class="bg-brand-ai hover:bg-brand-ai_dark text-white w-10 h-10 rounded-full flex items-center justify-center transition disabled:opacity-50 disabled:cursor-not-allowed" id="send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+            <p class="text-[10px] text-gray-400 text-center mt-2">Impulsado por Gemini AI ✨</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar animaciones AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // NUEVA FUNCIÓN: Enviar formulario a WhatsApp
+        function enviarAlWhatsApp(e) {
+            e.preventDefault(); // Evita que la página se recargue
+
+            // 1. Capturar los valores
+            const nombre = document.getElementById('form-nombre').value;
+            const telefono = document.getElementById('form-telefono').value;
+            const ciudad = document.getElementById('form-ciudad').value;
+            const mensaje = document.getElementById('form-mensaje').value;
+
+            // 2. Validar (opcional, el navegador ya valida los 'required')
+            if(!nombre || !telefono) return;
+
+            // 3. Crear el mensaje
+            const texto = `Hola Seryver G&G, soy *${nombre}* de *${ciudad}*.\n\nMi consulta es: ${mensaje}.\n\nMi teléfono de contacto es: ${telefono}`;
+
+            // 4. Crear el enlace de WhatsApp
+            const telefonoEmpresa = '51928848576';
+            const url = `https://wa.me/${telefonoEmpresa}?text=${encodeURIComponent(texto)}`;
+
+            // 5. Abrir en nueva pestaña
+            window.open(url, '_blank');
+        }
+
+        // Configuración de Gemini API
+        const apiKey = ""; // La clave se inyectará automáticamente en el entorno de ejecución
+        
+        // System Prompt para el Asesor General
+        const systemPrompt = `Actúa como un asesor de ventas y técnico experto de la empresa "Puertas Automáticas Seryver G&G" ubicada en Piura, Perú. 
+        Tono: Profesional, amable, seguro y persuasivo. 
+        Tus conocimientos:
+        1. Puertas Seccionales: Ahorran espacio, son elegantes, ideales para fachadas modernas.
+        2. Puertas Levadizas: Clásicas, robustas, para cocheras tradicionales.
+        3. Motores y Mantenimiento: Es vital el mantenimiento preventivo anual.
+        
+        Reglas de interacción:
+        - Tu objetivo principal es resolver la duda y LUEGO invitar al usuario a cotizar por WhatsApp al 928 848 576.
+        - Si preguntan precios, di que varían según las medidas y materiales, y dales el enlace a WhatsApp.
+        - Ubicación: Atendemos en Piura, Sullana, Paita y Talara.
+        - Usa emojis ocasionalmente ✨.
+        - Mantén las respuestas breves (máximo 3 párrafos).
+        `;
+
+        // ================= DIAGNOSTIC TOOL LOGIC =================
+        const diagnosticPrompt = `Eres un técnico experto en puertas de garaje automáticas. 
+        El usuario describirá un problema técnico. Tu tarea es:
+        1. Identificar 2 o 3 causas probables (ej. resortes rotos, falta de grasa, sensor desalineado).
+        2. Dar una advertencia de seguridad si es necesario (ej. "No intentes reparar resortes tú mismo, es peligroso").
+        3. Recomendar agendar una visita técnica.
+        4. Sé muy conciso (máximo 50 palabras). Usa formato de lista.`;
+
+        function openDiagnosticModal() {
+            document.getElementById('diagnostic-modal').classList.remove('hidden');
+        }
+
+        function closeDiagnosticModal() {
+            document.getElementById('diagnostic-modal').classList.add('hidden');
+        }
+
+        async function diagnoseIssue() {
+            const input = document.getElementById('issue-input');
+            const problem = input.value.trim();
+            const btn = document.getElementById('btn-diagnose');
+            const btnText = document.getElementById('btn-text');
+            const resultArea = document.getElementById('diagnostic-result');
+            const resultContent = document.getElementById('result-content');
+            const whatsappBtn = document.getElementById('whatsapp-diagnostic-btn');
+
+            if (!problem) {
+                alert("Por favor describe el problema primero.");
+                return;
+            }
+
+            // UI Loading State
+            btn.disabled = true;
+            btnText.textContent = "Analizando...";
+            btn.classList.add('opacity-75');
+
+            try {
+                // Call Gemini for Diagnosis
+                const response = await callGeminiAPI(problem, diagnosticPrompt);
+                
+                // Show Result
+                resultContent.innerHTML = marked.parse(response);
+                resultArea.classList.remove('hidden');
+                
+                // Prepare WhatsApp Link with the diagnosis context
+                const telefonoEmpresa = '51928848576';
+                const texto = `Hola Seryver, usé su diagnóstico IA.\n\nMi problema: "${problem}"\n\nDiagnóstico IA: ${response}\n\nQuisiera agendar una visita técnica.`;
+                whatsappBtn.href = `https://wa.me/${telefonoEmpresa}?text=${encodeURIComponent(texto)}`;
+
+            } catch (error) {
+                console.error(error);
+                alert("Hubo un error al consultar la IA. Intenta de nuevo.");
+            } finally {
+                btn.disabled = false;
+                btnText.textContent = "Analizar Problema";
+                btn.classList.remove('opacity-75');
+            }
+        }
+
+
+        // ================= CHAT WIDGET LOGIC =================
+        function toggleChat() {
+            const widget = document.getElementById('ai-chat-widget');
+            widget.classList.toggle('scale-0');
+            // Foco al input si se abre
+            if (!widget.classList.contains('scale-0')) {
+                setTimeout(() => document.getElementById('user-input').focus(), 300);
+            }
+        }
+
+        async function handleChatSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('user-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            // 1. Mostrar mensaje del usuario
+            appendMessage(message, 'user');
+            input.value = '';
+            
+            // 2. Mostrar estado "Escribiendo..."
+            const loading = document.getElementById('chat-loading');
+            const sendBtn = document.getElementById('send-btn');
+            loading.classList.remove('hidden');
+            sendBtn.disabled = true;
+            
+            // Scroll al fondo
+            const chatBody = document.getElementById('chat-messages');
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            try {
+                // 3. Llamada a Gemini API
+                const response = await callGeminiAPI(message, systemPrompt);
+                
+                // 4. Mostrar respuesta
+                loading.classList.add('hidden');
+                appendMessage(response, 'ai');
+            } catch (error) {
+                console.error("Error AI:", error);
+                loading.classList.add('hidden');
+                appendMessage("Lo siento, tuve un problema de conexión. Por favor contáctanos por WhatsApp. 😓", 'ai');
+            } finally {
+                sendBtn.disabled = false;
+            }
+        }
+
+        function appendMessage(text, sender) {
+            const chatBody = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            div.className = `chat-message ${sender === 'user' ? 'chat-user' : 'chat-ai'}`;
+            
+            // Si es IA, parsear Markdown, si es usuario texto plano
+            if (sender === 'ai') {
+                div.innerHTML = marked.parse(text);
+            } else {
+                div.textContent = text;
+            }
+            
+            chatBody.appendChild(div);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        // Shared Function for Gemini API Calls
+        async function callGeminiAPI(userText, sysPrompt) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: userText }]
+                }],
+                systemInstruction: {
+                    parts: [{ text: sysPrompt }]
+                }
+            };
+
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!response.ok) throw new Error('API Error');
+
+            const data = await response.json();
+            return data.candidates[0].content.parts[0].text;
+        }
+
+        // Lógica del Menú Móvil (Existente)
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Lógica para "Ver detalles" en productos
+        function toggleDetails(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
