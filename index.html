@@ -9,6 +9,8 @@
     <meta name="description" content="Expertos en puertas automáticas en Piura, Sullana y Talara. Instalación y mantenimiento de sistemas seccionales, levadizos y corredizos. Agrégale elegancia a tu seguridad.">
     <meta name="keywords" content="puertas automáticas Piura, seguridad moderna, SERYVER G & G, portones eléctricos Sullana, mantenimiento puertas levadizas">
     <meta name="author" content="Seryver G&G">
+    <!-- Meta Theme Color (Cambia el color de la pestaña del navegador en móviles) -->
+    <meta name="theme-color" content="#ea580c">
 
     <!-- Tailwind CSS (Framework de diseño) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -36,6 +38,7 @@
                             light: '#f8fafc',   /* Fondo Claro */
                             accent: '#ea580c',  /* Naranja Quemado (CTA) */
                             gold: '#d97706',    /* Dorado Mate (Detalles) */
+                            red: '#dc2626'      /* Rojo Urgencia */
                         }
                     },
                     fontFamily: {
@@ -45,11 +48,21 @@
                     animation: {
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                         'float': 'float 3s ease-in-out infinite',
+                        'heartbeat': 'heartbeat 1.5s ease-in-out infinite',
+                        'pop-in': 'popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
                     },
                     keyframes: {
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-10px)' },
+                        },
+                        heartbeat: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.05)' },
+                        },
+                        popIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.5)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
                         }
                     }
                 }
@@ -78,7 +91,6 @@
         .hero-wrapper {
             position: relative;
             overflow: hidden;
-            /* Asegura que la imagen no se salga al hacer zoom */
         }
 
         .hero-bg-animate {
@@ -92,7 +104,6 @@
             background-size: cover;
             background-position: center;
             z-index: -1;
-            /* La magia: escala la imagen suavemente */
             animation: zoomEffect 20s infinite alternate; 
         }
 
@@ -106,7 +117,6 @@
             backdrop-filter: blur(10px);
         }
         
-        /* Animación suave para detalles de producto */
         .product-details {
             transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
             max-height: 0;
@@ -126,29 +136,25 @@
             z-index: 1;
         }
         
-        /* Efecto Hover: Levantar y cambiar fondo */
         .edu-card:hover {
             transform: translateY(-10px) scale(1.02);
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); /* Azul oscuro degradado */
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
-            border-color: #ea580c; /* Borde naranja al pasar */
+            border-color: #ea580c;
         }
 
-        /* Cambiar color de textos al pasar el mouse */
         .edu-card:hover h3 { color: white; }
-        .edu-card:hover p { color: #cbd5e1; } /* Gris claro */
+        .edu-card:hover p { color: #cbd5e1; }
         
-        /* Animación del ícono */
         .edu-card .card-icon {
             transition: all 0.5s ease;
         }
         .edu-card:hover .card-icon {
             background-color: rgba(255, 255, 255, 0.1);
-            color: #ea580c; /* Icono se vuelve naranja */
+            color: #ea580c;
             transform: rotateY(360deg) scale(1.1);
         }
 
-        /* Contenedor de detalles ocultos */
         .more-details {
             max-height: 0;
             opacity: 0;
@@ -156,47 +162,74 @@
             transform: translateY(20px);
         }
         
-        /* Mostrar detalles al hacer hover */
         .edu-card:hover .more-details {
-            max-height: 300px; /* Suficiente espacio para la lista */
+            max-height: 300px;
             opacity: 1;
             transform: translateY(0);
             margin-top: 1.5rem;
             border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 1rem;
         }
+
+        .timer-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Estilos Popup */
+        #popup-content {
+            box-shadow: 0 0 50px rgba(234, 88, 12, 0.5); /* Resplandor naranja */
+        }
+
+        /* --- ESTILOS CAROUSEL TESTIMONIOS --- */
+        .testimonial-slide {
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+        }
+        .testimonial-active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: scale(1);
+            z-index: 10;
+        }
+        .testimonial-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.95);
+            z-index: 0;
+        }
     </style>
 </head>
 <body class="font-body text-slate-800 overflow-x-hidden">
 
     <!-- ================= NAV BAR ================= -->
-    <nav class="bg-brand-navy text-white fixed w-full z-50 shadow-lg transition-all duration-300" id="navbar">
+    <nav class="bg-brand-navy text-white fixed w-full z-50 shadow-lg transition-all duration-300 border-b-2 border-brand-accent" id="navbar">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <!-- Logo Restaurado (Texto) -->
-            <a href="#" class="font-heading font-extrabold text-2xl tracking-wider flex items-center gap-2">
-                <i class="fas fa-shield-alt text-brand-accent"></i>
+            <a href="#" class="font-heading font-extrabold text-2xl tracking-wider flex items-center gap-2 hover:scale-105 transition">
+                <i class="fas fa-shield-alt text-brand-accent animate-pulse-slow"></i>
                 SERYVER <span class="text-slate-400 font-light">G&G</span>
             </a>
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center space-x-6 text-sm font-medium tracking-wide">
-                <a href="#inicio" class="hover:text-brand-accent transition">INICIO</a>
-                <a href="#educativo" class="hover:text-brand-accent transition">BENEFICIOS</a>
-                <a href="#productos" class="hover:text-brand-accent transition">PRODUCTOS</a>
-                <a href="#proyectos" class="hover:text-brand-accent transition">PROYECTOS</a>
+                <a href="#inicio" class="hover:text-brand-accent transition hover:underline decoration-2 underline-offset-4">INICIO</a>
+                <a href="#educativo" class="hover:text-brand-accent transition hover:underline decoration-2 underline-offset-4">BENEFICIOS</a>
+                <a href="#productos" class="hover:text-brand-accent transition hover:underline decoration-2 underline-offset-4">PRODUCTOS</a>
+                <a href="#proyectos" class="hover:text-brand-accent transition hover:underline decoration-2 underline-offset-4">PROYECTOS</a>
             </div>
 
             <!-- CTA Button (Desktop) -->
             <div class="hidden md:block">
                 <a href="https://wa.me/51928848576?text=Hola,%20deseo%20cotizar%20una%20puerta%20automática" 
                    target="_blank"
-                   class="bg-brand-accent hover:bg-orange-700 text-white font-heading font-bold py-2 px-6 rounded-full transition shadow-md flex items-center gap-2">
+                   class="bg-brand-accent hover:bg-orange-700 text-white font-heading font-bold py-2 px-6 rounded-full transition shadow-md flex items-center gap-2 animate-bounce">
                     <i class="fab fa-whatsapp text-lg"></i> Cotiza: 928 848 576
                 </a>
             </div>
 
             <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-2xl focus:outline-none">
+            <button id="mobile-menu-btn" class="md:hidden text-2xl focus:outline-none text-brand-accent">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
@@ -212,7 +245,6 @@
 
     <!-- ================= HERO SECTION (CON FONDO ANIMADO) ================= -->
     <header id="inicio" class="hero-wrapper min-h-screen flex items-center relative">
-        <!-- Div separado para la animación del fondo -->
         <div class="hero-bg-animate"></div>
 
         <div class="container mx-auto px-6 pt-20 text-center md:text-left relative z-10">
@@ -220,30 +252,100 @@
                 <div class="inline-block bg-brand-accent/90 text-white text-xs font-bold px-3 py-1 rounded mb-4 animate-pulse">
                     ATENDIENDO A PIURA, SULLANA Y TALARA
                 </div>
-                <h1 class="font-heading text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6" data-aos="fade-up">
+                <h1 class="font-heading text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6" data-aos="zoom-in">
                     Agrégale <span class="text-brand-accent">Elegancia</span> a tu <span class="text-brand-gray">Seguridad</span>
                 </h1>
                 <p class="text-lg text-slate-300 mb-8 font-light" data-aos="fade-up" data-aos-delay="200">
                     Somos especialistas en automatización de accesos. Transformamos la fachada de tu hogar con tecnología moderna, robusta y confiable.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start" data-aos="fade-up" data-aos-delay="400">
-                    <a href="#productos" class="bg-brand-accent hover:bg-orange-700 text-white font-bold py-4 px-8 rounded shadow-lg transition transform hover:-translate-y-1 text-center">
+                    <a href="#productos" class="bg-brand-accent hover:bg-orange-700 text-white font-bold py-4 px-8 rounded shadow-lg transition transform hover:-translate-y-1 text-center hover:scale-105">
                         Ver Soluciones
                     </a>
-                    <a href="#contacto" class="border-2 border-white text-white hover:bg-white hover:text-brand-navy font-bold py-4 px-8 rounded transition text-center">
+                    <a href="#contacto" class="border-2 border-white text-white hover:bg-white hover:text-brand-navy font-bold py-4 px-8 rounded transition text-center hover:scale-105">
                         Contáctanos
                     </a>
                 </div>
             </div>
         </div>
         
-        <!-- Scroll Down Indicator -->
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce z-10">
             <i class="fas fa-chevron-down text-2xl"></i>
         </div>
     </header>
 
-    <!-- ================= DIDACTIC SECTION (El "Por Qué") - ANIMADO ================= -->
+    <!-- ================= SECCIÓN OFERTA FLASH ================= -->
+    <section id="oferta" class="py-12 bg-gradient-to-r from-brand-accent to-red-600 text-white relative overflow-hidden shadow-2xl transform -skew-y-1 my-8 origin-top" data-aos="fade-right">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 transform skew-y-1">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                
+                <!-- Columna Izquierda: Urgencia y Texto -->
+                <div class="md:w-1/2 text-center md:text-left">
+                    <div class="inline-flex items-center bg-white text-brand-red px-4 py-1 rounded-full font-bold text-xs uppercase tracking-wider mb-4 shadow-lg animate-pulse">
+                        <i class="fas fa-bolt mr-2"></i> Oferta Relámpago Seccional
+                    </div>
+                    <h2 class="font-heading text-3xl md:text-5xl font-extrabold mb-2 leading-tight drop-shadow-md">
+                        ¡Moderniza tu Garage <br> hoy mismo!
+                    </h2>
+                    <p class="text-white/90 text-lg mb-6">Kit Motor Seccional + 2 Controles + Instalación Gratis en Piura.</p>
+                    
+                    <!-- Temporizador -->
+                    <div class="flex justify-center md:justify-start gap-4 mb-6">
+                        <div class="timer-box p-3 rounded-lg text-center min-w-[70px] transform hover:scale-110 transition">
+                            <span id="hours" class="block text-3xl font-bold font-mono">11</span>
+                            <span class="text-[10px] uppercase">Horas</span>
+                        </div>
+                        <div class="timer-box p-3 rounded-lg text-center min-w-[70px] transform hover:scale-110 transition">
+                            <span id="minutes" class="block text-3xl font-bold font-mono">59</span>
+                            <span class="text-[10px] uppercase">Min</span>
+                        </div>
+                        <div class="timer-box p-3 rounded-lg text-center min-w-[70px] transform hover:scale-110 transition">
+                            <span id="seconds" class="block text-3xl font-bold font-mono text-yellow-300">59</span>
+                            <span class="text-[10px] uppercase text-yellow-300">Seg</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm font-bold text-yellow-200 animate-pulse mb-2"><i class="fas fa-exclamation-triangle"></i> ¡Solo quedan 3 cupos disponibles!</p>
+                </div>
+
+                <!-- Columna Derecha: Badge de Porcentaje y CTA -->
+                <div class="md:w-1/2 bg-white text-slate-800 p-6 rounded-2xl shadow-2xl transform hover:scale-105 transition duration-300 border-4 border-yellow-400 relative">
+                    <!-- Badge de Descuento Flotante -->
+                    <div class="absolute -top-8 -right-8 bg-red-600 text-white w-24 h-24 rounded-full flex flex-col items-center justify-center font-bold shadow-xl animate-bounce transform rotate-12 border-4 border-white z-20">
+                        <span class="text-xs">AHORRA</span>
+                        <span class="text-2xl">20%</span>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center gap-4 mb-4">
+                        <img src="Imagen de WhatsApp 2025-10-18 a las 15.54.26_04d5983b.jpg" alt="Puerta Seccional Oferta" class="w-24 h-24 object-cover rounded-lg shadow-md hover:rotate-3 transition">
+                        <div class="text-center sm:text-left">
+                            <h3 class="font-bold text-xl text-brand-navy">Puerta Seccional Premium</h3>
+                            <!-- SECCIÓN MODIFICADA: SOLO PORCENTAJE -->
+                            <div class="mt-2 inline-block bg-brand-red text-white px-4 py-2 rounded-lg transform -rotate-2 shadow-md hover:rotate-0 transition">
+                                <span class="font-extrabold text-2xl uppercase tracking-widest animate-pulse">¡-20% OFF!</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1 font-bold">Consulta precio especial hoy</p>
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-2 text-sm text-gray-600 mb-6">
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Motor Silencioso de Alta Potencia</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> 2 Controles Remotos Incluidos</li>
+                        <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Garantía de 12 Meses</li>
+                    </ul>
+
+                    <a href="https://wa.me/51928848576?text=Hola,%20vi%20su%20oferta%20de%20-20%25%20en%20la%20web.%20Quisiera%20saber%20el%20precio%20final%20para%20una%20puerta%20seccional" target="_blank" class="block w-full bg-brand-navy hover:bg-slate-800 text-white text-center font-bold py-4 rounded-xl shadow-lg transition animate-heartbeat text-lg uppercase tracking-wide border-b-4 border-slate-900 active:border-b-0 active:translate-y-1">
+                        Cotizar con Descuento <i class="fab fa-whatsapp ml-2"></i>
+                    </a>
+                    <p class="text-center text-xs text-gray-400 mt-3">Oferta exclusiva online.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= DIDACTIC SECTION (El "Por Qué") ================= -->
     <section id="educativo" class="py-20 bg-white/50 backdrop-blur-sm">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -252,7 +354,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Card 1: Seguridad (Con animación desplegable) -->
+                <!-- Card 1 -->
                 <div class="edu-card bg-white p-8 rounded-xl shadow-sm border-t-4 border-brand-navy group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
                     <div class="card-icon w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-brand-navy">
                         <i class="fas fa-user-shield text-2xl"></i>
@@ -261,27 +363,15 @@
                     <p class="text-slate-600 text-sm leading-relaxed transition-colors">
                         Evita exposiciones innecesarias al llegar a casa. Tu seguridad es primero.
                     </p>
-                    
-                    <!-- Contenido Desplegable -->
                     <div class="more-details">
                         <ul class="space-y-3 text-sm text-slate-300">
-                            <li class="flex items-center gap-2">
-                                <i class="fas fa-check-circle text-brand-accent"></i>
-                                <span>Ingreso rápido sin bajar del auto</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i class="fas fa-lock text-brand-accent"></i>
-                                <span>Bloqueo automático del motor</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i class="fas fa-child text-brand-accent"></i>
-                                <span>Sensores anti-aplastamiento</span>
-                            </li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check-circle text-brand-accent"></i> <span>Ingreso rápido</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-lock text-brand-accent"></i> <span>Bloqueo automático</span></li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Card 2: Confort (Con animación desplegable) -->
+                <!-- Card 2 -->
                 <div class="edu-card bg-white p-8 rounded-xl shadow-sm border-t-4 border-brand-accent group cursor-pointer" data-aos="fade-up" data-aos-delay="200">
                     <div class="card-icon w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6 text-brand-accent">
                         <i class="fas fa-magic text-2xl"></i>
@@ -290,27 +380,15 @@
                     <p class="text-slate-600 text-sm leading-relaxed transition-colors">
                         Olvídate del esfuerzo físico y del clima. La tecnología trabaja por ti.
                     </p>
-
-                    <!-- Contenido Desplegable -->
                     <div class="more-details">
                         <ul class="space-y-3 text-sm text-slate-300">
-                            <li class="flex items-center gap-2">
-                                <i class="fas fa-wifi text-brand-accent"></i>
-                                <span>Control remoto de largo alcance</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i class="fas fa-cloud-rain text-brand-accent"></i>
-                                <span>No te mojes en días de lluvia</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i class="fas fa-stopwatch text-brand-accent"></i>
-                                <span>Apertura en segundos</span>
-                            </li>
+                            <li class="flex items-center gap-2"><i class="fas fa-wifi text-brand-accent"></i> <span>Control remoto</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-cloud-rain text-brand-accent"></i> <span>No te mojes</span></li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Card 3: Valor (Con animación desplegable) -->
+                <!-- Card 3 -->
                 <div class="edu-card bg-white p-8 rounded-xl shadow-sm border-t-4 border-brand-navy group cursor-pointer" data-aos="fade-up" data-aos-delay="300">
                     <div class="card-icon w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6 text-brand-navy">
                         <i class="fas fa-chart-line text-2xl"></i>
@@ -319,54 +397,12 @@
                     <p class="text-slate-600 text-sm leading-relaxed transition-colors">
                         Una fachada moderna aumenta inmediatamente el valor comercial de tu casa.
                     </p>
-
-                    <!-- Contenido Desplegable -->
                     <div class="more-details">
                         <ul class="space-y-3 text-sm text-slate-300">
-                            <li class="flex items-center gap-2">
-                                <i class="fas fa-gem text-brand-accent"></i>
-                                <span>Acabados premium en madera/metal</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i class="fas fa-home text-brand-accent"></i>
-                                <span>Mejora estética instantánea</span>
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i class="fas fa-dollar-sign text-brand-accent"></i>
-                                <span>Mayor precio de reventa</span>
-                            </li>
+                            <li class="flex items-center gap-2"><i class="fas fa-gem text-brand-accent"></i> <span>Acabados premium</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-dollar-sign text-brand-accent"></i> <span>Mayor plusvalía</span></li>
                         </ul>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= ABOUT & TEAM ================= -->
-    <section class="py-16 bg-brand-navy text-white relative overflow-hidden">
-        <!-- Decoration -->
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-blue-800 opacity-20 blur-3xl"></div>
-
-        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-12">
-            <div class="md:w-1/2" data-aos="fade-right">
-                <span class="text-brand-accent font-bold tracking-widest text-sm uppercase mb-2 block">Nuestra Esencia</span>
-                <h2 class="font-heading text-3xl font-bold mb-6">"Nos sentimos bendecidos en Piura"</h2>
-                <p class="text-slate-300 mb-6 leading-relaxed">
-                    En <strong>Seryver G&G</strong>, no solo instalamos puertas; construimos confianza. Somos una empresa local comprometida con la seguridad de nuestros vecinos en el norte peruano.
-                </p>
-                <ul class="space-y-4">
-                    <li class="flex items-center"><i class="fas fa-check-circle text-brand-accent mr-3"></i> Honestidad en cada cotización.</li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-brand-accent mr-3"></i> Soporte técnico post-venta real.</li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-brand-accent mr-3"></i> Materiales de grado industrial.</li>
-                </ul>
-            </div>
-            <div class="md:w-1/2" data-aos="fade-left">
-                <div class="bg-white/10 p-2 rounded-xl backdrop-blur-sm transform rotate-1 hover:rotate-0 transition duration-500">
-                    <!-- Placeholder for Team Photo -->
-                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1000&auto=format&fit=crop" 
-                         alt="Equipo técnico Seryver" 
-                         class="rounded-lg shadow-2xl w-full h-72 object-cover grayscale hover:grayscale-0 transition duration-500">
-                    <p class="text-center mt-3 text-sm font-medium">Nuestro equipo técnico listo para servirte</p>
                 </div>
             </div>
         </div>
@@ -376,14 +412,13 @@
     <section id="productos" class="py-20 bg-white/50 backdrop-blur-sm">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-navy">Nuestras Soluciones</h2>
-                <p class="text-brand-gray mt-2">Tecnología de punta adaptada a tus necesidades.</p>
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-navy" data-aos="fade-up">Nuestras Soluciones</h2>
+                <p class="text-brand-gray mt-2" data-aos="fade-up" data-aos-delay="100">Tecnología de punta adaptada a tus necesidades.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <!-- Product 1: Seccionales -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="0">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="0">
                     <div class="h-48 overflow-hidden relative">
                         <img src="Imagen de WhatsApp 2025-10-18 a las 15.54.26_04d5983b.jpg" alt="Puertas Seccionales" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         <div class="absolute top-0 right-0 bg-brand-accent text-white text-xs font-bold px-2 py-1 m-2 rounded">TOP VENTAS</div>
@@ -396,16 +431,15 @@
                         </button>
                         <div id="p1" class="product-details bg-slate-50 mt-3 p-3 rounded text-xs text-slate-600 border border-slate-200">
                             <ul class="list-disc list-inside space-y-1">
-                                <li>Paneles importados con aislamiento.</li>
-                                <li>Motor silencioso de alta potencia.</li>
-                                <li>Sensores de seguridad anti-aplastamiento.</li>
+                                <li>Paneles importados.</li>
+                                <li>Motor silencioso.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 2: Corredizas -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="100">
+                <!-- Product 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-48 overflow-hidden">
                         <img src="puerta-corredera-acceso-finca-480x320.png" alt="Sistemas Corredizos" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     </div>
@@ -417,16 +451,15 @@
                         </button>
                         <div id="p2" class="product-details bg-slate-50 mt-3 p-3 rounded text-xs text-slate-600 border border-slate-200">
                             <ul class="list-disc list-inside space-y-1">
-                                <li>Motores para alto tráfico.</li>
-                                <li>Cremalleras de acero galvanizado.</li>
-                                <li>Opción de apertura rápida.</li>
+                                <li>Motores alto tráfico.</li>
+                                <li>Cremalleras de acero.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 3: Levadizas -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group" data-aos="fade-up" data-aos-delay="200">
+                <!-- Product 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
                     <div class="h-48 overflow-hidden">
                         <img src="puertas-levadizas-de-metal-peru.webp" alt="Puertas Levadizas" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                     </div>
@@ -438,16 +471,15 @@
                         </button>
                         <div id="p3" class="product-details bg-slate-50 mt-3 p-3 rounded text-xs text-slate-600 border border-slate-200">
                             <ul class="list-disc list-inside space-y-1">
-                                <li>Sistema de resortes calibrados.</li>
-                                <li>Estructura metálica reforzada.</li>
-                                <li>Adaptable a puertas existentes.</li>
+                                <li>Resortes calibrados.</li>
+                                <li>Estructura reforzada.</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 4: Mantenimiento (ACTUALIZADO CON WHATSAPP DIRECTO) -->
-                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group border-2 border-brand-accent/20" data-aos="fade-up" data-aos-delay="300">
+                <!-- Product 4: Mantenimiento -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition group border-2 border-brand-accent/20 transform hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
                     <div class="h-48 overflow-hidden bg-brand-navy flex flex-col items-center justify-center relative">
                         <i class="fas fa-tools text-5xl text-brand-gray group-hover:text-brand-accent transition duration-500 mb-2"></i>
                         <span class="text-white font-bold text-lg">SOPORTE TÉCNICO</span>
@@ -455,24 +487,19 @@
                     <div class="p-6 text-center">
                         <h3 class="font-heading font-bold text-lg text-brand-navy">Servicio Técnico</h3>
                         <p class="text-sm text-slate-500 mb-4 mt-2">¿Problemas con tu puerta? Llámanos.</p>
-                        
-                        <!-- Número de Teléfono Destacado -->
                         <div class="mb-4 bg-slate-100 py-2 rounded-lg">
                             <p class="text-xs text-slate-500 uppercase font-bold">Emergencias 24/7</p>
                             <p class="text-xl font-extrabold text-brand-accent">
                                 <i class="fab fa-whatsapp mr-1"></i> 902 874 946
                             </p>
                         </div>
-
-                        <!-- Botón Directo a WhatsApp -->
                         <a href="https://wa.me/51902874946?text=Hola,%20necesito%20soporte%20técnico%20para%20mi%20puerta%20automática" 
                            target="_blank"
                            class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-4 rounded-full transition transform hover:scale-105 inline-flex justify-center items-center shadow-md">
-                            <i class="fas fa-wrench mr-2"></i> Contactar Técnico Ahora
+                            <i class="fas fa-wrench mr-2"></i> Contactar
                         </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -523,32 +550,90 @@
         </div>
     </section>
 
-    <!-- ================= TESTIMONIALS (Calidad sobre Cantidad) ================= -->
-    <section class="py-16 bg-brand-light">
-        <div class="container mx-auto px-6 max-w-4xl text-center">
-            <h2 class="font-heading text-2xl font-bold text-brand-navy mb-10">La satisfacción de nuestros clientes nos respalda</h2>
-            
-            <div class="bg-white p-8 rounded-2xl shadow-xl border-l-8 border-brand-accent relative" data-aos="zoom-in">
-                <i class="fas fa-quote-left text-4xl text-slate-200 absolute top-4 left-4"></i>
-                <div class="flex flex-col items-center">
-                    <div class="flex text-yellow-400 mb-4 gap-1">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p class="text-slate-600 text-lg italic mb-6 relative z-10">
-                        "El equipo de Seryver transformó completamente la fachada de mi casa. La puerta es silenciosa, segura y elegante. 100% recomendados para la gente de Piura."
-                    </p>
-                    <div>
-                        <h4 class="font-bold text-brand-navy">Cliente Verificado</h4>
-                        <span class="text-sm text-brand-gray">Residente en Urb. Miraflores</span>
+    <!-- ================= TESTIMONIALS CAROUSEL (NUEVO) ================= -->
+    <section id="testimonios" class="py-20 bg-slate-50 relative overflow-hidden">
+        <!-- Elemento de fondo decorativo -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-30 pointer-events-none">
+            <div class="absolute w-64 h-64 bg-brand-accent/20 rounded-full blur-3xl -top-20 -right-20"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-navy">Experiencias Reales</h2>
+                <p class="text-brand-gray mt-2">Nuestros clientes confirman nuestra calidad.</p>
+            </div>
+
+            <!-- Contenedor del Carrusel -->
+            <div class="relative w-full max-w-4xl mx-auto h-72 md:h-60" data-aos="zoom-in">
+                <!-- Slide 1 -->
+                <div class="testimonial-slide absolute inset-0 testimonial-active" data-index="0">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border-l-8 border-brand-accent flex flex-col md:flex-row items-center gap-6 h-full">
+                        <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-200 rounded-full flex-shrink-0 overflow-hidden border-2 border-brand-accent">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente Feliz" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-center md:text-left flex-1">
+                            <div class="flex justify-center md:justify-start text-yellow-400 mb-2">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 italic text-lg mb-3">"El equipo de Seryver transformó mi cochera. La puerta seccional es súper silenciosa y elegante. La instalación fue en un solo día."</p>
+                            <div>
+                                <h4 class="font-bold text-brand-navy">Carlos M.</h4>
+                                <span class="text-xs text-slate-400 font-bold uppercase"><i class="fas fa-map-marker-alt text-brand-accent"></i> Urb. Miraflores, Piura</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- Slide 2 -->
+                <div class="testimonial-slide absolute inset-0 testimonial-hidden" data-index="1">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border-l-8 border-brand-navy flex flex-col md:flex-row items-center gap-6 h-full">
+                        <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-200 rounded-full flex-shrink-0 overflow-hidden border-2 border-brand-navy">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente Feliz" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-center md:text-left flex-1">
+                            <div class="flex justify-center md:justify-start text-yellow-400 mb-2">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-slate-600 italic text-lg mb-3">"Tenía miedo que fuera complicado, pero me explicaron todo el proceso. Ahora me siento mucho más segura llegando a casa de noche."</p>
+                            <div>
+                                <h4 class="font-bold text-brand-navy">Ana P.</h4>
+                                <span class="text-xs text-slate-400 font-bold uppercase"><i class="fas fa-map-marker-alt text-brand-accent"></i> Santa Rosa, Sullana</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="testimonial-slide absolute inset-0 testimonial-hidden" data-index="2">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border-l-8 border-brand-accent flex flex-col md:flex-row items-center gap-6 h-full">
+                        <div class="w-16 h-16 md:w-20 md:h-20 bg-gray-200 rounded-full flex-shrink-0 overflow-hidden border-2 border-brand-accent">
+                            <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="Cliente Feliz" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-center md:text-left flex-1">
+                            <div class="flex justify-center md:justify-start text-yellow-400 mb-2">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p class="text-slate-600 italic text-lg mb-3">"Excelente atención post-venta. Tuve una duda con el control remoto y me ayudaron por WhatsApp al instante. Recomendados."</p>
+                            <div>
+                                <h4 class="font-bold text-brand-navy">Jorge L.</h4>
+                                <span class="text-xs text-slate-400 font-bold uppercase"><i class="fas fa-map-marker-alt text-brand-accent"></i> Talara, Centro</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Indicadores -->
+            <div class="flex justify-center gap-3 mt-8">
+                <button class="w-3 h-3 rounded-full bg-brand-accent indicator transition-all duration-300 transform scale-125" onclick="setSlide(0)"></button>
+                <button class="w-3 h-3 rounded-full bg-gray-300 indicator transition-all duration-300 hover:bg-brand-gray" onclick="setSlide(1)"></button>
+                <button class="w-3 h-3 rounded-full bg-gray-300 indicator transition-all duration-300 hover:bg-brand-gray" onclick="setSlide(2)"></button>
             </div>
         </div>
     </section>
 
-    <!-- ================= SOCIAL MEDIA SECTION (NUEVO) ================= -->
+    <!-- ================= SOCIAL MEDIA SECTION ================= -->
     <section id="sociales" class="py-16 bg-gradient-to-r from-brand-navy to-slate-900 text-white relative overflow-hidden">
-        <!-- Decoración de Fondo Animada -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
             <div class="absolute w-96 h-96 bg-brand-accent rounded-full blur-[100px] -top-20 -left-20 animate-pulse-slow"></div>
             <div class="absolute w-96 h-96 bg-blue-500 rounded-full blur-[100px] bottom-0 right-0 animate-pulse-slow" style="animation-delay: 1s;"></div>
@@ -559,47 +644,35 @@
                 ¡No seas el último en enterarte! 🚀
             </h2>
             <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto leading-relaxed" data-aos="fade-up">
-                Únete a nuestra comunidad digital. Publicamos <span class="text-brand-accent font-bold">tips de seguridad</span>, videos de instalaciones y <span class="text-yellow-400 font-bold">descuentos exclusivos</span> para seguidores.
+                Únete a nuestra comunidad digital. Publicamos tips, videos y descuentos exclusivos.
             </p>
 
             <div class="flex flex-wrap justify-center gap-6">
-                <!-- Facebook Card -->
-                <!-- SE HA ACTUALIZADO EL ENLACE DE FACEBOOK -->
+                <!-- Facebook -->
                 <a href="https://www.facebook.com/share/1C44Cm8J4d/" target="_blank" class="group bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:bg-[#1877F2] transition duration-500 w-full md:w-72 flex flex-col items-center cursor-pointer transform hover:-translate-y-2 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="100">
                     <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-white group-hover:text-[#1877F2] transition duration-300">
                         <i class="fab fa-facebook-f text-3xl"></i>
                     </div>
                     <h3 class="font-bold text-2xl mb-1">Facebook</h3>
                     <p class="text-sm text-slate-300 group-hover:text-white/90 mb-4">Fotos de proyectos diarios</p>
-                    <span class="inline-block bg-white/20 px-6 py-2 rounded-full text-sm font-bold group-hover:bg-white group-hover:text-[#1877F2] transition shadow-lg animate-float">
-                        +400 Vecinos Unidos
-                    </span>
                 </a>
 
-                <!-- Instagram Card -->
-                <!-- SE HA ACTUALIZADO EL ENLACE DE INSTAGRAM -->
+                <!-- Instagram -->
                 <a href="https://www.instagram.com/seryver_s.a.c?igsh=Mnh1dHgxNjg5cTI4" target="_blank" class="group bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:bg-gradient-to-tr hover:from-[#fdf497] hover:via-[#fd5949] hover:to-[#d6249f] transition duration-500 w-full md:w-72 flex flex-col items-center cursor-pointer transform hover:-translate-y-2 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="200">
                     <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-white group-hover:text-[#d6249f] transition duration-300">
                         <i class="fab fa-instagram text-3xl"></i>
                     </div>
                     <h3 class="font-bold text-2xl mb-1">Instagram</h3>
                     <p class="text-sm text-slate-300 group-hover:text-white/90 mb-4">Inspiración para tu fachada</p>
-                    <span class="inline-block bg-white/20 px-6 py-2 rounded-full text-sm font-bold group-hover:bg-white group-hover:text-[#d6249f] transition shadow-lg animate-float" style="animation-delay: 0.5s;">
-                        Ver Reels Nuevos 📸
-                    </span>
                 </a>
 
-                <!-- TikTok Card -->
-                <!-- SE HA ACTUALIZADO EL ENLACE DE TIKTOK -->
+                <!-- TikTok -->
                 <a href="https://www.tiktok.com/@seryver.puertas?is_from_webapp=1&sender_device=pc" target="_blank" class="group bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:bg-black transition duration-500 w-full md:w-72 flex flex-col items-center cursor-pointer transform hover:-translate-y-2 hover:shadow-2xl" data-aos="zoom-in" data-aos-delay="300">
                     <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mb-4 group-hover:bg-white group-hover:text-black transition duration-300">
                         <i class="fab fa-tiktok text-3xl"></i>
                     </div>
                     <h3 class="font-bold text-2xl mb-1">TikTok</h3>
                     <p class="text-sm text-slate-300 group-hover:text-white/90 mb-4">Videos de antes y después</p>
-                    <span class="inline-block bg-white/20 px-6 py-2 rounded-full text-sm font-bold group-hover:bg-white group-hover:text-black transition shadow-lg animate-float" style="animation-delay: 1s;">
-                        Ver Transformaciones 🔥
-                    </span>
                 </a>
             </div>
         </div>
@@ -609,12 +682,10 @@
     <section class="py-20 bg-white">
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row gap-12">
-                
                 <!-- Contact Info & Map -->
                 <div class="lg:w-1/2">
                     <h2 class="font-heading text-3xl font-bold text-brand-navy mb-4">Llegamos donde nos necesites</h2>
                     <p class="text-slate-600 mb-8">Nuestra base operativa está en Piura, pero cubrimos todo el eje norte.</p>
-                    
                     <div class="grid grid-cols-2 gap-4 mb-8">
                         <div class="flex items-center p-3 bg-brand-light rounded border border-slate-100">
                             <i class="fas fa-map-marker-alt text-brand-accent mr-3"></i> <span class="font-bold text-brand-navy">Piura</span>
@@ -629,32 +700,25 @@
                             <i class="fas fa-map-marker-alt text-brand-accent mr-3"></i> <span class="font-bold text-brand-navy">Talara</span>
                         </div>
                     </div>
-
-                    <!-- Embed Google Map -->
                     <div class="h-64 bg-slate-200 rounded-xl overflow-hidden shadow-inner">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127271.6963283856!2d-80.6669931!3d-5.1963955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a107c7908352d%3A0xb35556209b5523a!2sPiura!5e0!3m2!1ses!2spe!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
-
-                <!-- Contact Form (Visual) -->
+                <!-- Contact Form -->
                 <div class="lg:w-1/2" id="contacto">
                     <div class="bg-brand-light p-8 rounded-2xl shadow-lg">
                         <h3 class="font-heading text-2xl font-bold text-brand-navy mb-6">Solicita tu Cotización</h3>
-                        <!-- Se agregó ID al formulario y se cambió el evento onsubmit -->
                         <form id="cotizacionForm" onsubmit="enviarAlWhatsApp(event)">
                             <div class="mb-4">
                                 <label class="block text-sm font-bold text-slate-700 mb-2">Nombre Completo</label>
-                                <!-- Se agregó ID para capturar el valor -->
                                 <input type="text" id="form-nombre" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent outline-none transition" placeholder="Tu nombre">
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-bold text-slate-700 mb-2">Teléfono / WhatsApp</label>
-                                <!-- Se agregó ID para capturar el valor -->
                                 <input type="tel" id="form-telefono" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-brand-accent focus:ring-1 focus:ring-brand-accent outline-none transition" placeholder="999 999 999">
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-bold text-slate-700 mb-2">Ciudad</label>
-                                <!-- Se agregó ID para capturar el valor -->
                                 <select id="form-ciudad" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-brand-accent outline-none bg-white">
                                     <option value="Piura">Piura</option>
                                     <option value="Sullana">Sullana</option>
@@ -665,7 +729,6 @@
                             </div>
                             <div class="mb-6">
                                 <label class="block text-sm font-bold text-slate-700 mb-2">Mensaje</label>
-                                <!-- Se agregó ID para capturar el valor -->
                                 <textarea id="form-mensaje" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-brand-accent outline-none transition" rows="3" placeholder="Estoy interesado en..."></textarea>
                             </div>
                             <button type="submit" class="w-full bg-brand-navy hover:bg-slate-800 text-white font-bold py-3 rounded-lg transition transform hover:scale-[1.02]">
@@ -682,35 +745,28 @@
     <footer class="bg-brand-navy text-white pt-16 pb-8 border-t border-slate-800">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-                <!-- Branding -->
                 <div>
                     <h3 class="font-heading text-2xl font-bold mb-4 flex items-center gap-2">
                         <i class="fas fa-shield-alt text-brand-accent"></i> SERYVER G&G
                     </h3>
                     <p class="text-slate-400 text-sm mb-6">
-                        Comprometidos con la seguridad y modernización de los hogares en el norte del Perú. Tecnología e innovación a tu alcance.
+                        Comprometidos con la seguridad y modernización de los hogares en el norte del Perú.
                     </p>
                     <div class="flex space-x-4">
-                        <!-- TAMBIÉN SE ACTUALIZARON LOS ENLACES PEQUEÑOS DEL FOOTER -->
                         <a href="https://www.facebook.com/share/1C44Cm8J4d/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-600 transition"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/seryver_s.a.c?igsh=Mnh1dHgxNjg5cTI4" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-600 transition"><i class="fab fa-instagram"></i></a>
                         <a href="https://www.tiktok.com/@seryver.puertas?is_from_webapp=1&sender_device=pc" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-black transition"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
-
-                <!-- Links -->
                 <div>
                     <h4 class="font-bold text-lg mb-4 text-slate-200">Navegación</h4>
                     <ul class="space-y-2 text-slate-400 text-sm">
                         <li><a href="#inicio" class="hover:text-brand-accent transition">Inicio</a></li>
                         <li><a href="#productos" class="hover:text-brand-accent transition">Puertas Seccionales</a></li>
                         <li><a href="#proyectos" class="hover:text-brand-accent transition">Proyectos Recientes</a></li>
-                        <!-- TAMBIÉN ACTUALICÉ ESTE ENLACE EN EL FOOTER PARA QUE COINCIDA -->
                         <li><a href="https://drive.google.com/file/d/1GVPL072DvhwBmnlxmRIP37B5Qcd2Dsjw/view?usp=sharing" target="_blank" class="hover:text-brand-accent transition">Ver Portafolio Completo</a></li>
                     </ul>
                 </div>
-
-                <!-- Contact Info -->
                 <div>
                     <h4 class="font-bold text-lg mb-4 text-slate-200">Contáctanos</h4>
                     <ul class="space-y-4">
@@ -729,22 +785,34 @@
                     </ul>
                 </div>
             </div>
-
             <div class="border-t border-slate-800 pt-8 text-center text-xs text-slate-500">
                 &copy; 2025 Puertas Automáticas Seryver G&G. Todos los derechos reservados.
             </div>
         </div>
     </footer>
 
-    <!-- Floating Buttons Container -->
-    <div class="fixed bottom-6 right-6 flex flex-col items-end space-y-4 z-50">
-        
-        <!-- WhatsApp Button -->
-        <a href="https://wa.me/51928848576?text=Hola,%20quisiera%20más%20información" 
-           class="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition transform hover:scale-110"
-           aria-label="Chat en WhatsApp">
-            <i class="fab fa-whatsapp text-3xl"></i>
-        </a>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/51928848576?text=Hola,%20quisiera%20más%20información" 
+       class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition transform hover:scale-110 z-50 animate-bounce"
+       aria-label="Chat en WhatsApp">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- POP-UP MODAL (OFERTA INICIAL) -->
+    <div id="promo-popup" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-[90%] relative shadow-2xl transform scale-0 transition-transform duration-300 animate-pop-in" id="popup-content">
+            <button onclick="closePopup()" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl transition">&times;</button>
+            <div class="text-center">
+                <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-accent animate-bounce">
+                    <i class="fas fa-gift text-4xl"></i>
+                </div>
+                <h3 class="font-heading text-2xl font-bold text-brand-navy mb-2">¡Oferta de Bienvenida!</h3>
+                <p class="text-gray-600 mb-6">Cotiza tu puerta automática hoy y recibe un <strong>Mantenimiento Preventivo GRATIS</strong> en tu primer año.</p>
+                <button onclick="closePopup(); document.getElementById('oferta').scrollIntoView({behavior: 'smooth'})" class="w-full bg-brand-accent hover:bg-orange-600 text-white font-bold py-3 rounded-xl transition shadow-lg transform hover:scale-105">
+                    Ver Ofertas Disponibles
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
@@ -756,6 +824,104 @@
             once: true,
             offset: 100
         });
+
+        // Toggle Details Function
+        function toggleDetails(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('active');
+        }
+
+        // --- LÓGICA DEL TEMPORIZADOR DE OFERTA (12H RESTART) ---
+        function startCountdown(durationInSeconds) {
+            let timer = durationInSeconds;
+            const hoursDisplay = document.getElementById('hours');
+            const minutesDisplay = document.getElementById('minutes');
+            const secondsDisplay = document.getElementById('seconds');
+
+            const interval = setInterval(function () {
+                let hours = parseInt(timer / 3600, 10);
+                let minutes = parseInt((timer % 3600) / 60, 10);
+                let seconds = parseInt(timer % 60, 10);
+
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                hoursDisplay.textContent = hours;
+                minutesDisplay.textContent = minutes;
+                secondsDisplay.textContent = seconds;
+
+                if (--timer < 0) {
+                    timer = durationInSeconds; // Reiniciar cuando acabe
+                }
+            }, 1000);
+        }
+
+        // --- LÓGICA DEL POP-UP ---
+        function showPopup() {
+            const popup = document.getElementById('promo-popup');
+            const content = document.getElementById('popup-content');
+            popup.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-0');
+                content.classList.add('scale-100');
+            }, 100);
+        }
+
+        function closePopup() {
+            const popup = document.getElementById('promo-popup');
+            const content = document.getElementById('popup-content');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-0');
+            setTimeout(() => {
+                popup.classList.add('hidden');
+            }, 300);
+        }
+
+        // --- LÓGICA DEL CARRUSEL DE TESTIMONIOS (AUTO-PLAY) ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalSlides = slides.length;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.remove('testimonial-hidden');
+                    slide.classList.add('testimonial-active');
+                } else {
+                    slide.classList.add('testimonial-hidden');
+                    slide.classList.remove('testimonial-active');
+                }
+            });
+            
+            // Actualizar indicadores
+            indicators.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('bg-brand-accent', 'scale-125');
+                    dot.classList.remove('bg-gray-300');
+                } else {
+                    dot.classList.remove('bg-brand-accent', 'scale-125');
+                    dot.classList.add('bg-gray-300');
+                }
+            });
+        }
+
+        function setSlide(index) {
+            currentSlide = index;
+            updateSlides();
+            // Reiniciar timer al hacer click manual
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlides();
+        }
+
+        // Variable global para el intervalo
+        let slideInterval;
 
         // NUEVA FUNCIÓN: Enviar formulario a WhatsApp
         function enviarAlWhatsApp(e) {
@@ -781,26 +947,16 @@
             window.open(url, '_blank');
         }
 
-        // Lógica del Menú Móvil
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
+        // Iniciar scripts al cargar
+        window.onload = function () {
+            startCountdown(43200);
+            
+            // Mostrar Popup después de 1.5 segundos
+            setTimeout(showPopup, 1500);
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Cerrar menú móvil al hacer clic en un enlace
-        menu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
-        });
-
-        // Lógica para "Ver detalles" en productos
-        function toggleDetails(id) {
-            const element = document.getElementById(id);
-            element.classList.toggle('active');
-        }
+            // Iniciar Carrusel Testimonios
+            slideInterval = setInterval(nextSlide, 5000);
+        };
     </script>
 </body>
 </html>
