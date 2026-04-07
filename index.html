@@ -357,17 +357,17 @@
             </div>
         </div>
     </section>
-
-    <!-- ================= DIDACTIC SECTION (El "Por Qué") ================= -->
+    <!-- ================= DIDACTIC SECTION ================= -->
     <section id="educativo" class="py-20 bg-white/50 backdrop-blur-sm relative">
-        <!-- AVATAR 1: Jefe Experto (Integra Gemini API) -->
-        <div class="absolute bottom-0 right-2 md:right-16 z-20 flex flex-col items-end group w-28 md:w-40 pointer-events-none">
+        <!-- AVATAR 1: Jefe Experto -->
+        <div class="absolute bottom-0 right-2 md:right-16 z-30 flex flex-col items-end group w-32 md:w-48 pointer-events-none">
             <div class="relative bg-white p-3 rounded-2xl shadow-2xl mb-2 border-2 border-brand-accent transform transition-transform group-hover:-translate-y-2 pointer-events-auto cursor-pointer" onclick="generateAvatarMessage('msg-avatar-1')">
                 <p id="msg-avatar-1" class="text-[10px] md:text-xs font-bold text-slate-700">¡Hola! Recuerda que un buen mantenimiento previene accidentes. Toca aquí para otro consejo. ✨</p>
                 <div class="absolute -bottom-2 right-6 w-4 h-4 bg-white border-b-2 border-r-2 border-brand-accent transform rotate-45"></div>
                 <div class="absolute -top-3 -right-3 bg-brand-ai text-white text-[9px] px-2 py-1 rounded-full animate-pulse shadow-lg"><i class="fas fa-sparkles"></i> IA</div>
             </div>
-            <img src="Diseño sin título (7).png" alt="Técnico Experto" class="w-full object-contain filter drop-shadow-2xl animate-float pointer-events-auto">
+            <!-- Uso de nombre codificado y un placeholder visual en caso de error de ruta -->
+            <img src="Dise%C3%B1o%20sin%20t%C3%ADtulo%20(7).png" alt="Técnico Experto" class="w-full h-auto object-contain filter drop-shadow-2xl animate-float pointer-events-auto" onerror="this.src='https://placehold.co/200x400/ea580c/white?text=Falta+Imagen+1'">
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
@@ -433,14 +433,15 @@
 
     <!-- ================= PRODUCTS CATALOG ================= -->
     <section id="productos" class="py-20 bg-white/50 backdrop-blur-sm relative">
-        <!-- AVATAR 2: Soldador (Integra Gemini API) -->
-        <div class="absolute bottom-0 left-0 md:left-10 z-20 flex flex-col items-start group w-32 md:w-48 pointer-events-none">
+        <!-- AVATAR 2: Soldador -->
+        <div class="absolute bottom-0 left-0 md:left-10 z-30 flex flex-col items-start group w-32 md:w-48 pointer-events-none">
             <div class="relative bg-brand-navy p-3 rounded-2xl shadow-2xl mb-2 border-2 border-brand-gray transform transition-transform group-hover:-translate-y-2 pointer-events-auto cursor-pointer" onclick="generateAvatarMessage('msg-avatar-2')">
                 <p id="msg-avatar-2" class="text-[10px] md:text-xs font-bold text-white">Reforzamos cada estructura al máximo. ¿Dudas? Toca mi nube y la IA te ayudará. 🛠️</p>
                 <div class="absolute -bottom-2 left-6 w-4 h-4 bg-brand-navy border-b-2 border-r-2 border-brand-gray transform rotate-45"></div>
                 <div class="absolute -top-3 -left-3 bg-brand-ai text-white text-[9px] px-2 py-1 rounded-full animate-pulse shadow-lg"><i class="fas fa-sparkles"></i> IA</div>
             </div>
-            <img src="1.png" alt="Técnico Soldador" class="w-full object-contain filter drop-shadow-2xl animate-float pointer-events-auto" style="animation-delay: 1s;">
+            <!-- Se agregó el placeholder de error -->
+            <img src="1.png" alt="Técnico Soldador" class="w-full h-auto object-contain filter drop-shadow-2xl animate-float pointer-events-auto" style="animation-delay: 1s;" onerror="this.src='https://placehold.co/200x400/0f172a/white?text=Falta+Imagen+2'">
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
@@ -583,21 +584,21 @@
         </div>
     </section>
 
-    <!-- ================= TESTIMONIALS CAROUSEL (NUEVO) ================= -->
+    <!-- ================= TESTIMONIALS CAROUSEL ================= -->
     <section id="testimonios" class="py-20 bg-slate-50 relative overflow-hidden">
-        <!-- Elemento de fondo decorativo -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-30 pointer-events-none">
             <div class="absolute w-64 h-64 bg-brand-accent/20 rounded-full blur-3xl -top-20 -right-20"></div>
         </div>
 
-        <!-- AVATAR 3: Asesor Amigable (Integra Gemini API) -->
-        <div class="absolute bottom-0 right-0 md:right-10 z-20 flex flex-col items-end group w-28 md:w-40 pointer-events-none hidden md:flex">
+        <!-- AVATAR 3: Asesor Amigable -->
+        <div class="absolute bottom-0 right-0 md:right-10 z-30 flex flex-col items-end group w-32 md:w-48 pointer-events-none hidden md:flex">
             <div class="relative bg-gradient-to-r from-brand-accent to-orange-400 p-3 rounded-2xl shadow-2xl mb-2 transform transition-transform group-hover:-translate-y-2 pointer-events-auto cursor-pointer" onclick="generateAvatarMessage('msg-avatar-3')">
                 <p id="msg-avatar-3" class="text-[10px] md:text-xs font-bold text-white">Nuestros motores detectan obstáculos para proteger a tu familia y mascotas. 🐕❤️</p>
                 <div class="absolute -bottom-2 right-6 w-4 h-4 bg-orange-400 transform rotate-45"></div>
                 <div class="absolute -top-3 -right-3 bg-brand-ai text-white text-[9px] px-2 py-1 rounded-full animate-pulse shadow-lg"><i class="fas fa-sparkles"></i> IA</div>
             </div>
-            <img src="2.png" alt="Asesor Amigable" class="w-full object-contain filter drop-shadow-2xl animate-float pointer-events-auto" style="animation-delay: 2s;">
+            <!-- Se agregó el placeholder de error -->
+            <img src="2.png" alt="Asesor Amigable" class="w-full h-auto object-contain filter drop-shadow-2xl animate-float pointer-events-auto" style="animation-delay: 2s;" onerror="this.src='https://placehold.co/200x400/ea580c/white?text=Falta+Imagen+3'">
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
