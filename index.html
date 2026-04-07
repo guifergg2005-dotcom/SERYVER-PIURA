@@ -182,6 +182,19 @@
             box-shadow: 0 0 50px rgba(234, 88, 12, 0.5); /* Resplandor naranja */
         }
 
+        .typing-dot {
+            animation: typing 1.4s infinite ease-in-out both;
+            display: inline-block;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0.5); opacity: 0.3; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
         /* --- ESTILOS CAROUSEL TESTIMONIOS --- */
         .testimonial-slide {
             transition: opacity 1s ease-in-out, transform 1s ease-in-out;
@@ -346,8 +359,18 @@
     </section>
 
     <!-- ================= DIDACTIC SECTION (El "Por Qué") ================= -->
-    <section id="educativo" class="py-20 bg-white/50 backdrop-blur-sm">
-        <div class="container mx-auto px-6">
+    <section id="educativo" class="py-20 bg-white/50 backdrop-blur-sm relative">
+        <!-- AVATAR 1: Jefe Experto (Integra Gemini API) -->
+        <div class="absolute bottom-0 right-2 md:right-16 z-20 flex flex-col items-end group w-28 md:w-40 pointer-events-none">
+            <div class="relative bg-white p-3 rounded-2xl shadow-2xl mb-2 border-2 border-brand-accent transform transition-transform group-hover:-translate-y-2 pointer-events-auto cursor-pointer" onclick="generateAvatarMessage('msg-avatar-1')">
+                <p id="msg-avatar-1" class="text-[10px] md:text-xs font-bold text-slate-700">¡Hola! Recuerda que un buen mantenimiento previene accidentes. Toca aquí para otro consejo. ✨</p>
+                <div class="absolute -bottom-2 right-6 w-4 h-4 bg-white border-b-2 border-r-2 border-brand-accent transform rotate-45"></div>
+                <div class="absolute -top-3 -right-3 bg-brand-ai text-white text-[9px] px-2 py-1 rounded-full animate-pulse shadow-lg"><i class="fas fa-sparkles"></i> IA</div>
+            </div>
+            <img src="Diseño sin título (7).png" alt="Técnico Experto" class="w-full object-contain filter drop-shadow-2xl animate-float pointer-events-auto">
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-navy mb-4">¿Por qué automatizar tu hogar?</h2>
                 <p class="text-brand-gray max-w-2xl mx-auto">Pasa el cursor sobre las tarjetas para descubrir los beneficios ocultos.</p>
@@ -409,8 +432,18 @@
     </section>
 
     <!-- ================= PRODUCTS CATALOG ================= -->
-    <section id="productos" class="py-20 bg-white/50 backdrop-blur-sm">
-        <div class="container mx-auto px-6">
+    <section id="productos" class="py-20 bg-white/50 backdrop-blur-sm relative">
+        <!-- AVATAR 2: Soldador (Integra Gemini API) -->
+        <div class="absolute bottom-0 left-0 md:left-10 z-20 flex flex-col items-start group w-32 md:w-48 pointer-events-none">
+            <div class="relative bg-brand-navy p-3 rounded-2xl shadow-2xl mb-2 border-2 border-brand-gray transform transition-transform group-hover:-translate-y-2 pointer-events-auto cursor-pointer" onclick="generateAvatarMessage('msg-avatar-2')">
+                <p id="msg-avatar-2" class="text-[10px] md:text-xs font-bold text-white">Reforzamos cada estructura al máximo. ¿Dudas? Toca mi nube y la IA te ayudará. 🛠️</p>
+                <div class="absolute -bottom-2 left-6 w-4 h-4 bg-brand-navy border-b-2 border-r-2 border-brand-gray transform rotate-45"></div>
+                <div class="absolute -top-3 -left-3 bg-brand-ai text-white text-[9px] px-2 py-1 rounded-full animate-pulse shadow-lg"><i class="fas fa-sparkles"></i> IA</div>
+            </div>
+            <img src="1.png" alt="Técnico Soldador" class="w-full object-contain filter drop-shadow-2xl animate-float pointer-events-auto" style="animation-delay: 1s;">
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-12">
                 <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-navy" data-aos="fade-up">Nuestras Soluciones</h2>
                 <p class="text-brand-gray mt-2" data-aos="fade-up" data-aos-delay="100">Tecnología de punta adaptada a tus necesidades.</p>
@@ -555,6 +588,16 @@
         <!-- Elemento de fondo decorativo -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-30 pointer-events-none">
             <div class="absolute w-64 h-64 bg-brand-accent/20 rounded-full blur-3xl -top-20 -right-20"></div>
+        </div>
+
+        <!-- AVATAR 3: Asesor Amigable (Integra Gemini API) -->
+        <div class="absolute bottom-0 right-0 md:right-10 z-20 flex flex-col items-end group w-28 md:w-40 pointer-events-none hidden md:flex">
+            <div class="relative bg-gradient-to-r from-brand-accent to-orange-400 p-3 rounded-2xl shadow-2xl mb-2 transform transition-transform group-hover:-translate-y-2 pointer-events-auto cursor-pointer" onclick="generateAvatarMessage('msg-avatar-3')">
+                <p id="msg-avatar-3" class="text-[10px] md:text-xs font-bold text-white">Nuestros motores detectan obstáculos para proteger a tu familia y mascotas. 🐕❤️</p>
+                <div class="absolute -bottom-2 right-6 w-4 h-4 bg-orange-400 transform rotate-45"></div>
+                <div class="absolute -top-3 -right-3 bg-brand-ai text-white text-[9px] px-2 py-1 rounded-full animate-pulse shadow-lg"><i class="fas fa-sparkles"></i> IA</div>
+            </div>
+            <img src="2.png" alt="Asesor Amigable" class="w-full object-contain filter drop-shadow-2xl animate-float pointer-events-auto" style="animation-delay: 2s;">
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
@@ -922,6 +965,45 @@
 
         // Variable global para el intervalo
         let slideInterval;
+
+        // --- LÓGICA DE AVATARES IA (GEMINI API) ---
+        const apiKey = ""; // API Key proveída por el entorno
+
+        const systemPromptAvatar = `Eres un asesor experto de Puertas Automáticas Seryver G&G en Piura.
+        Genera un consejo rápido, un tip de mantenimiento o una mini oferta promocional.
+        REGLAS:
+        - Máximo 15 palabras.
+        - Tono amigable, persuasivo y muy humano.
+        - Usa un emoji al final que tenga sentido.
+        - Que suene como un tip hablado.`;
+
+        async function generateAvatarMessage(elementId) {
+            const bubbleText = document.getElementById(elementId);
+            const originalText = bubbleText.innerHTML;
+            
+            // Estado de carga visual
+            bubbleText.innerHTML = '<span class="typing-dot text-brand-accent">.</span><span class="typing-dot text-brand-accent">.</span><span class="typing-dot text-brand-accent">.</span>';
+
+            try {
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                const payload = {
+                    contents: [{ parts: [{ text: "Dame un consejo rápido, un dato curioso o una mini oferta sobre puertas automáticas." }] }],
+                    systemInstruction: { parts: [{ text: systemPromptAvatar }] },
+                    generationConfig: { temperature: 0.9 } // Mayor creatividad
+                };
+                const response = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (!response.ok) throw new Error('API Error');
+                const data = await response.json();
+                
+                // Extraer y limpiar el texto
+                let newText = data.candidates[0].content.parts[0].text.replace(/\*/g, ''); 
+                bubbleText.innerHTML = newText;
+            } catch (error) {
+                console.error("Error al obtener tip de Gemini:", error);
+                bubbleText.innerHTML = "¡Ups! Mi conexión a la base de datos falló. Intenta tocar de nuevo. 🛠️";
+                setTimeout(() => { bubbleText.innerHTML = originalText; }, 3000);
+            }
+        }
 
         // NUEVA FUNCIÓN: Enviar formulario a WhatsApp
         function enviarAlWhatsApp(e) {
